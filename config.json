@@ -10,16 +10,16 @@
 			"none": ["carcassonne", "userstyle"]
 		},
 		{
-			"id": "bggTools",
-			"title": "BGG tools & scripts",
-			"all": ["boardgamegeek"],
-			"none": []
-		},
-		{
 			"id": "userstyles",
 			"title": "BGA userstyles",
 			"all": ["boardgamearena", "userstyle"],
 			"none": ["carcassonne"]
+		},
+		{
+			"id": "bggTools",
+			"title": "BGG tools & scripts",
+			"all": ["boardgamegeek"],
+			"none": []
 		},
 		{
 			"id": "carcassonne",
