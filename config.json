@@ -13,13 +13,12 @@
 			"id": "bggTools",
 			"title": "BGG tools & scripts",
 			"all": ["boardgamegeek"],
-			"none": ["userstyle"]
+			"none": []
 		},
 		{
 			"id": "userstyles",
-			"title": "Userstyles",
-			"all": ["userstyle"],
-			"any": ["boardgamearena", "boardgamegeek"],
+			"title": "BGA userstyles",
+			"all": ["boardgamearena", "userstyle"],
 			"none": ["carcassonne"]
 		},
 		{

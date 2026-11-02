@@ -29,9 +29,7 @@ function escapeHtml(str) {
 
 function matches(repo, group) {
 	const has = (t) => repo.topics.includes(t);
-	return group.all.every(has)
-		&& (!group.any || group.any.some(has))
-		&& !group.none.some(has);
+	return group.all.every(has) && !group.none.some(has);
 }
 
 function renderRepo(repo) {
