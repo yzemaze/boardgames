@@ -28,26 +28,16 @@ function escapeHtml(str) {
 }
 
 function matches(repo, group) {
-	return group.all.every((t) => repo.topics.includes(t)) && !group.none.some((t) => repo.topics.includes(t));
+	const has = (t) => repo.topics.includes(t);
+	return group.all.every(has)
+		&& (!group.any || group.any.some(has))
+		&& !group.none.some(has);
 }
 
 function renderRepo(repo) {
-	const links = [`<a href="${escapeHtml(repo.html_url)}">Code</a>`];
-	if (repo.homepage) {
-		links.push(`<a href="${escapeHtml(repo.homepage)}">Website</a>`);
-	}
-	const meta = [`updated ${repo.pushed_at.slice(0, 10)}`];
-	if (repo.stargazers_count) {
-		meta.push(`★ ${repo.stargazers_count}`);
-	}
-	if (repo.fork) {
-		meta.push("fork");
-	}
 	return `<article class="repo">
-	<h3><a href="${escapeHtml(repo.html_url)}">${escapeHtml(repo.name)}</a></h3>
-	<p class="description">${escapeHtml(repo.description)}</p>
-	<p class="meta">${meta.join(" · ")}</p>
-	<p class="links">${links.join(" ")}</p>
+	<h3><a href="${escapeHtml(repo.homepage || repo.html_url)}">${escapeHtml(repo.name)}</a></h3>
+	<p>${escapeHtml(repo.description)}</p>
 </article>`;
 }
 
@@ -64,17 +54,18 @@ const repos = (await fetchRepos(config.user))
 	.filter((r) => !r.archived && !r.private)
 	.sort((a, b) => a.name.localeCompare(b.name));
 
-const sections = config.groups
+const groups = config.groups
 	.map((g) => [g, repos.filter((r) => matches(r, g))])
-	.filter(([, list]) => list.length)
-	.map(([g, list]) => renderGroup(g, list));
+	.filter(([, list]) => list.length);
+const sections = groups.map(([g, list]) => renderGroup(g, list));
+const toc = groups.map(([g]) => `<a href="#${g.id}">${escapeHtml(g.title)}</a>`);
 
 const html = template
 	.replaceAll("{{title}}", escapeHtml(config.title))
 	.replaceAll("{{intro}}", escapeHtml(config.intro))
 	.replaceAll("{{user}}", escapeHtml(config.user))
-	.replaceAll("{{groups}}", sections.join("\n"))
-	.replaceAll("{{date}}", new Date().toISOString().slice(0, 10));
+	.replaceAll("{{toc}}", toc.join("\n"))
+	.replaceAll("{{groups}}", sections.join("\n"));
 
 await mkdir("dist", { recursive: true });
 await writeFile("dist/index.html", html);

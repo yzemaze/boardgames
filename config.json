@@ -1,7 +1,7 @@
 {
 	"user": "yzemaze",
 	"title": "Board game tools",
-	"intro": "Userscripts, userstyles and tools for Board Game Arena and Carcassonne.",
+	"intro": "Userscripts, userstyles and tools for Board Game Arena, BoardGameGeek and Carcassonne.",
 	"groups": [
 		{
 			"id": "bgaTools",
@@ -10,9 +10,16 @@
 			"none": ["carcassonne", "userstyle"]
 		},
 		{
+			"id": "bggTools",
+			"title": "BGG tools & scripts",
+			"all": ["boardgamegeek"],
+			"none": ["userstyle"]
+		},
+		{
 			"id": "userstyles",
 			"title": "Userstyles",
-			"all": ["boardgamearena", "userstyle"],
+			"all": ["userstyle"],
+			"any": ["boardgamearena", "boardgamegeek"],
 			"none": ["carcassonne"]
 		},
 		{
