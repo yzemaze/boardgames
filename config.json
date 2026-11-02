@@ -1,0 +1,25 @@
+{
+	"user": "yzemaze",
+	"title": "Board game tools",
+	"intro": "Userscripts, userstyles and tools for Board Game Arena and Carcassonne.",
+	"groups": [
+		{
+			"id": "bgaTools",
+			"title": "BGA tools & scripts",
+			"all": ["boardgamearena"],
+			"none": ["carcassonne", "userstyle"]
+		},
+		{
+			"id": "userstyles",
+			"title": "Userstyles",
+			"all": ["boardgamearena", "userstyle"],
+			"none": ["carcassonne"]
+		},
+		{
+			"id": "carcassonne",
+			"title": "Carcassonne tools",
+			"all": ["carcassonne"],
+			"none": []
+		}
+	]
+}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{title}}</title>
+	<meta name="description" content="{{intro}}">
+	<style>
+		:root {
+			color-scheme: light dark;
+			--bg: #f6f5f2;
+			--card: #ffffff;
+			--text: #1f2328;
+			--muted: #656d76;
+			--border: #d8dee4;
+			--accent: #0b6bcb;
+		}
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--bg: #0f1216;
+				--card: #171b21;
+				--text: #e6edf3;
+				--muted: #8d96a0;
+				--border: #2d333b;
+				--accent: #4da3ff;
+			}
+		}
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font: 16px/1.5 system-ui, sans-serif;
+		}
+		#page {
+			display: grid;
+			gap: 2.5rem;
+			max-width: 72rem;
+			margin: 0 auto;
+			padding: 2.5rem 1rem;
+		}
+		h1 {
+			margin: 0 0 0.25rem;
+			font-size: 2rem;
+		}
+		h2 {
+			margin: 0 0 1rem;
+			padding-bottom: 0.4rem;
+			border-bottom: 1px solid var(--border);
+			font-size: 1.3rem;
+		}
+		h3 {
+			margin: 0;
+			font-size: 1rem;
+			overflow-wrap: anywhere;
+		}
+		a {
+			color: var(--accent);
+			text-decoration: none;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		#intro, .meta {
+			margin: 0;
+			color: var(--muted);
+		}
+		#toc {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: start;
+			gap: 1.25rem;
+			margin-top: 1rem;
+		}
+		.repoGrid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+			gap: 1rem;
+		}
+		.repo {
+			display: grid;
+			grid-template-rows: auto 1fr auto auto;
+			gap: 0.4rem;
+			padding: 1rem;
+			background: var(--card);
+			border: 1px solid var(--border);
+			border-radius: 0.5rem;
+		}
+		.repo p {
+			margin: 0;
+		}
+		.meta {
+			font-size: 0.85rem;
+		}
+		.links {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: start;
+			gap: 1rem;
+			font-size: 0.9rem;
+		}
+		footer {
+			color: var(--muted);
+			font-size: 0.85rem;
+		}
+	</style>
+</head>
+<body>
+	<main id="page">
+		<header>
+			<h1>{{title}}</h1>
+			<p id="intro">{{intro}}</p>
+			<nav id="toc">
+				<a href="#bgaTools">BGA tools</a>
+				<a href="#userstyles">Userstyles</a>
+				<a href="#carcassonne">Carcassonne</a>
+			</nav>
+		</header>
+		{{groups}}
+		<footer>
+			Generated from GitHub topics on {{date}} · <a href="https://github.com/{{user}}">github.com/{{user}}</a>
+		</footer>
+	</main>
+</body>
+</html>
